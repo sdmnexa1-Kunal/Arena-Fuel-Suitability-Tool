@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Rukmani Motors Arena — Fuel Suitability Tool</title>
+<meta name="description" content="Rukmani Motors Arena fuel suitability calculator — compare Petrol vs S-CNG based on running, prices and customer preferences." />
+<style>
+:root{--bg:#071018;--panel:#0d1722;--panel2:#111d2b;--line:#273444;--text:#f5f7fb;--muted:#9ba8b7;--green:#00d084;--green2:#0a8f61;--red:#ff5964;--amber:#ffca4b;--cyan:#58d8ff;--shadow:0 22px 55px rgba(0,0,0,.38)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#102234 0,#071018 38%,#03070b 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:760px;margin:auto;padding:20px 16px 50px}.brand{display:flex;justify-content:center;align-items:center;margin:4px 0 22px}.brand img{width:min(330px,82vw);height:auto;display:block;filter:drop-shadow(0 8px 18px rgba(0,0,0,.28))}.hero{text-align:left}.hero h1{font-size:42px;line-height:1.02;margin:0;color:#64d8ff;letter-spacing:-1.5px}.hero .hi{font-size:28px;font-weight:800;margin:18px 0 24px}.rule{height:1px;background:#253240;margin:0 0 24px}.card{background:linear-gradient(180deg,rgba(14,25,38,.96),rgba(7,15,24,.98));border:1px solid #2b3a4b;border-radius:22px;padding:20px;box-shadow:var(--shadow);margin-bottom:18px}.label{font-size:12px;color:#dce3eb;font-weight:700;margin:0 0 8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{margin-bottom:14px}.field.full{grid-column:1/-1}.input,.select{width:100%;border:1px solid #2b394b;background:#111c2b;color:#fff;border-radius:12px;padding:14px 13px;font-size:16px;outline:none}.input:focus,.select:focus{border-color:var(--green)}select{appearance:auto}.mini{font-size:10px;color:var(--muted);margin-top:4px}.pricebox{border:1px solid #2b394b;border-radius:16px;padding:15px;margin:2px 0 18px}.pricebox .title{text-align:center;font-size:11px;font-weight:900;letter-spacing:.16em;color:#fff;border-bottom:1px dashed #344355;padding-bottom:10px;margin-bottom:12px}.pricecols{display:grid;grid-template-columns:1fr 1fr}.pricecols div:last-child{text-align:right}.pricecols small{display:block;color:#8493a5;font-size:10px;font-weight:800;letter-spacing:.12em}.pricecols strong{display:block;font-size:21px;margin-top:4px;color:var(--green)}.segtitle{font-size:12px;font-weight:700;color:#dce3eb;margin:14px 0 8px}.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.seg button{background:#0d1724;color:#8593a5;border:1px solid #263547;border-radius:10px;padding:10px 6px;font-size:11px;font-weight:800;min-height:42px}.seg button.active{color:var(--green);border-color:#087a55;background:#08231d;box-shadow:0 0 0 1px rgba(0,208,132,.1) inset}.cta{width:100%;border:0;border-radius:13px;padding:16px;background:#008b4f;color:white;font-size:16px;font-weight:900;letter-spacing:.01em;cursor:pointer;box-shadow:0 10px 25px rgba(0,139,79,.2)}.cta:hover{background:#00a45d}.note{font-size:11px;color:#7f8e9f;line-height:1.55;margin-top:12px}.result{display:none}.result.show{display:block}.gauge{border:1px solid #334355;border-radius:20px;padding:22px 15px 20px;text-align:center;background:radial-gradient(circle at 50% 100%,#182432 0,#081019 62%)}.gauge svg{width:min(430px,100%);height:auto}.score{font-size:47px;font-weight:950;letter-spacing:-2px}.verdict{display:inline-block;margin-top:10px;border:1px solid #43212a;background:#210b11;color:#ff6b73;border-radius:12px;padding:11px 28px;font-size:19px;font-weight:900}.verdict.cng{border-color:#095d45;background:#06251c;color:#00d084}.verdict.tie{border-color:#66501c;background:#241d08;color:#ffd45c}.metric{margin-top:18px}.metric h3{font-size:15px;margin:0 0 16px;border-bottom:1px solid #2b394b;padding-bottom:12px}.rows{display:grid;gap:10px}.row{display:flex;justify-content:space-between;gap:20px;font-size:13px;color:#98a5b5}.row b{color:#f7f9fc;font-size:14px}.big{font-size:31px;font-weight:950;color:var(--red);background:#05090e;border-radius:14px;padding:15px;text-align:center;margin-top:16px}.recovery{border:1px solid #2b394b;border-radius:16px;padding:18px;text-align:center;margin-top:16px}.recovery small{color:#8997a8;font-weight:800;letter-spacing:.12em}.recovery strong{display:block;color:#ff6d76;font-size:38px;margin-top:6px}.why{margin-top:16px;padding:15px;border-radius:14px;background:#0b1622;border:1px solid #233244;font-size:12px;line-height:1.6;color:#b4c0cd}.foot{color:#657487;font-size:10px;text-align:center;margin-top:22px;line-height:1.5}.secondary{width:100%;border:1px solid #2d3c4e;background:#0a121b;color:#a9b6c5;border-radius:12px;padding:13px;font-weight:800;margin-top:12px;cursor:pointer}.admin{margin-top:18px}.admin summary{cursor:pointer;color:#7f90a3;font-size:11px}.adminbox{margin-top:10px;padding:14px;border:1px dashed #304154;border-radius:14px}.adminbox p{font-size:11px;color:#8795a5}.success{color:var(--green)}
+@media(max-width:520px){.wrap{padding:16px 12px 40px}.hero h1{font-size:34px}.hero .hi{font-size:24px}.card{padding:16px}.grid{gap:9px}.seg button{font-size:10px;padding:9px 4px}.big{font-size:27px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><img src="rukmani-arena-logo.png" alt="Rukmani Motors Maruti Suzuki Arena"></div>
+  <section class="hero"><h1>Fuel-Suitability-Tool</h1><div class="hi">सही फ्यूल चुनें?</div><div class="rule"></div></section>
+
+  <section class="card">
+    <div class="field"><div class="label">Select Arena CNG Vehicle</div><select id="vehicle" class="select"></select></div>
+    <div class="grid">
+      <div class="field full"><div class="label">Daily Running (in KMs)</div><input id="daily" class="input" type="number" min="0" value="50"></div>
+      <div class="field"><div class="label">Petrol Price (₹/L)</div><input id="petrolPrice" class="input" type="number" min="0" step="0.01" value="114"></div>
+      <div class="field"><div class="label">CNG Price (₹/kg)</div><input id="cngPrice" class="input" type="number" min="0" step="0.01" value="97"></div>
+      <div class="field"><div class="label">Petrol Mileage (km/L)</div><input id="petrolMileage" class="input" type="number" min="0" step="0.01"></div>
+      <div class="field"><div class="label">CNG Mileage (km/kg)</div><input id="cngMileage" class="input" type="number" min="0" step="0.01"></div>
+    </div>
+
+    <div class="pricebox"><div class="title">PRICE PER KM</div><div class="pricecols"><div><small>PETROL</small><strong id="petrolPerKm">₹0.00</strong></div><div><small>CNG</small><strong id="cngPerKm">₹0.00</strong></div></div></div>
+
+    <div class="segtitle">Vehicle Usage</div><div class="seg" id="usage"><button class="active" data-value="personal">Personal</button><button data-value="taxi">Taxi</button><button style="visibility:hidden"></button></div>
+    <div class="segtitle">Driving preference</div><div class="seg" id="driving"><button data-value="economy">Economy</button><button class="active" data-value="balanced">Balanced</button><button data-value="performance">Performance</button></div>
+    <div class="segtitle">Are you comfortable with possible queues &amp; waiting time (upto 45 mins) while refuelling CNG?</div><div class="seg" id="queue"><button data-value="comfortable">Comfortable</button><button class="active" data-value="manageable">Manageable</button><button data-value="not">Not comfortable</button></div>
+    <div class="segtitle">Do You/Your family feel comfortable coming out of the car during refuelling? (Incl. Night)</div><div class="seg" id="outside"><button data-value="ok">Ok with the hustle</button><button class="active" data-value="manageable">Manageable</button><button data-value="not">Not preferred</button></div>
+    <div class="segtitle">How convenient is access to CNG station?</div><div class="seg" id="station"><button class="active" data-value="under5">Less than 5 KMs</button><button data-value="5to7">5–7 KMs</button><button data-value="over7">More than 7 KMs</button></div>
+    <button class="cta" id="check">Check My Fuel Suitability</button>
+    <div class="note">Fuel prices, mileage and vehicle price difference are editable. Use the current Rukmani Motors quotation/price list before presenting the recommendation to a customer.</div>
+  </section>
+
+  <section id="result" class="result">
+    <div class="card"><div class="gauge">
+      <svg viewBox="0 0 360 190" role="img" aria-label="Fuel suitability gauge"><path d="M55 145 A125 125 0 0 1 83 55" fill="none" stroke="#ff5964" stroke-width="28"/><path d="M83 55 A125 125 0 0 1 277 55" fill="none" stroke="#ffca4b" stroke-width="28"/><path d="M277 55 A125 125 0 0 1 305 145" fill="none" stroke="#00d084" stroke-width="28"/><line id="needle" x1="180" y1="145" x2="180" y2="44" stroke="#f4f7fa" stroke-width="4" stroke-linecap="round"/><circle cx="180" cy="145" r="11" fill="#8c98a6"/><text id="score" x="180" y="130" text-anchor="middle" class="score" fill="#fff">50</text></svg>
+      <div id="verdict" class="verdict">Petrol is right</div>
+    </div></div>
+
+    <div class="card metric"><h3>Total additional investment for CNG Car</h3><div class="rows"><div class="row"><span>Additional cost of CNG vehicle</span><b id="premium">₹0</b></div><div class="row"><span>Estimated total interest (@8.5% for 5 Years)</span><b id="interest">₹0</b></div></div><div class="big" id="totalInvestment">₹0</div></div>
+    <div class="card metric"><h3>NO SAVINGS UPTO:</h3><div class="big" id="breakEvenKm">0 KM</div><div class="recovery"><small>RECOVERY PERIOD</small><strong id="recovery">0.0 <small style="font-size:18px;letter-spacing:0">Yrs</small></strong></div><div class="why" id="why"></div><button class="secondary" id="recalc">Recalculate Details</button></div>
+  </section>
+  <div class="foot">Rukmani Motors Arena • Customer counselling tool • Not a financial or fuel-price guarantee. Actual on-road cost, discounts, finance rate and mileage may vary.</div>
+</div>
+<script>
+const vehicles={
+ 'Alto K10':{petrol:24.39,cng:33.85,premium:95000},
+ 'S-Presso':{petrol:24.12,cng:32.73,premium:90000},
+ 'Celerio':{petrol:25.24,cng:34.43,premium:90000},
+ 'WagonR 1.0':{petrol:24.35,cng:34.05,premium:95000},
+ 'Swift':{petrol:24.80,cng:30.90,premium:105000},
+ 'Dzire':{petrol:24.79,cng:31.12,premium:105000},
+ 'Eeco':{petrol:19.71,cng:26.78,premium:95000},
+ 'Ertiga':{petrol:20.30,cng:26.11,premium:115000},
+ 'Brezza':{petrol:17.80,cng:25.51,premium:115000}
+};
+const $=id=>document.getElementById(id);const vehicle=$('vehicle');
+Object.keys(vehicles).forEach(v=>{let o=document.createElement('option');o.value=v;o.textContent=v+' CNG';vehicle.appendChild(o)});
+function setDefaults(){const v=vehicles[vehicle.value];$('petrolMileage').value=v.petrol;$('cngMileage').value=v.cng;calcPerKm()}
+vehicle.addEventListener('change',setDefaults);
+function calcPerKm(){let pp=+$('petrolPrice').value||0,cp=+$('cngPrice').value||0,pm=+$('petrolMileage').value||0,cm=+$('cngMileage').value||0;$('petrolPerKm').textContent='₹'+(pm?pp/pm:0).toFixed(2);$('cngPerKm').textContent='₹'+(cm?cp/cm:0).toFixed(2)}
+['petrolPrice','cngPrice','petrolMileage','cngMileage'].forEach(id=>$(id).addEventListener('input',calcPerKm));
+function bindSeg(id){document.querySelectorAll('#'+id+' button[data-value]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('active'));b.classList.add('active')}))}
+['usage','driving','queue','outside','station'].forEach(bindSeg);
+function val(id){return document.querySelector('#'+id+' .active')?.dataset.value}
+function interestOn(principal,rate=.085,years=5){if(!principal)return 0;const r=rate/12,n=years*12;const emi=principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);return Math.max(0,emi*n-principal)}
+function calculate(){
+ const d=+$('daily').value||0,pp=+$('petrolPrice').value||0,cp=+$('cngPrice').value||0,pm=+$('petrolMileage').value||0,cm=+$('cngMileage').value||0;
+ const pkm=pm?pp/pm:0,ckm=cm?cp/cm:0,diff=pkm-ckm,v=vehicles[vehicle.value];
+ const premium=v.premium,interest=interestOn(premium),total=premium+interest;
+ let score=50;
+ // Economics: annual running and fuel saving are the main driver.
+ if(diff>0) score+=Math.min(30, diff*8); else score+=Math.max(-30,diff*8);
+ if(d>=40)score+=7;else if(d<20)score-=8;else if(d<30)score-=3;
+ if(val('usage')==='taxi')score+=8;
+ if(val('driving')==='economy')score+=5; if(val('driving')==='performance')score-=8;
+ if(val('queue')==='comfortable')score+=5; if(val('queue')==='not')score-=10;
+ if(val('outside')==='ok')score+=4; if(val('outside')==='not')score-=9;
+ if(val('station')==='under5')score+=6; if(val('station')==='over7')score-=8;
+ score=Math.round(Math.max(0,Math.min(100,score)));
+ let verdict=score>=62?'CNG is right for you':score<=42?'Petrol is right':'Both can work';
+ const breakEven=diff>0?total/diff:Infinity;const years=d>0&&isFinite(breakEven)?breakEven/(d*365):Infinity;
+ $('score').textContent=score;$('verdict').textContent=verdict;$('verdict').className='verdict '+(score>=62?'cng':score<=42?'':'tie');
+ // Rotate needle from 0° at left-ish to 180° at right-ish.
+ const angle=-62+(score/100)*124;const rad=angle*Math.PI/180;const x2=180+101*Math.sin(rad),y2=145-101*Math.cos(rad);$('needle').setAttribute('x2',x2);$('needle').setAttribute('y2',y2);
+ $('premium').textContent='₹'+Math.round(premium).toLocaleString('en-IN');$('interest').textContent='₹'+Math.round(interest).toLocaleString('en-IN');$('totalInvestment').textContent='₹'+Math.round(total).toLocaleString('en-IN');
+ $('breakEvenKm').textContent=isFinite(breakEven)?Math.round(breakEven).toLocaleString('en-IN')+' KILOMETRES':'No savings';$('recovery').innerHTML=isFinite(years)?years.toFixed(1)+' <small style="font-size:18px;letter-spacing:0">Yrs</small>':'—';
+ $('why').innerHTML=`<b>Why this result?</b><br>Fuel cost per km: Petrol <b>₹${pkm.toFixed(2)}</b> vs CNG <b>₹${ckm.toFixed(2)}</b>. ${diff>0?`CNG saves about <b>₹${diff.toFixed(2)}/km</b> before considering the extra vehicle/finance cost.`:`At these inputs, CNG does not reduce fuel cost per km.`} The recommendation also considers running, usage, driving preference, refuelling comfort and station access.`;
+ $('result').classList.add('show');$('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('check').addEventListener('click',calculate);$('recalc').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));setDefaults();
+</script>
+</body></html>
