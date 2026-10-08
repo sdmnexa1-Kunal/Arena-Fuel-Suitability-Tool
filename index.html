@@ -98,19 +98,33 @@ function calculate(){
  const d=+$('daily').value||0,pp=+$('petrolPrice').value||0,cp=+$('cngPrice').value||0,pm=+$('petrolMileage').value||0,cm=+$('cngMileage').value||0;
  const pkm=pm?pp/pm:0,ckm=cm?cp/cm:0,diff=pkm-ckm,v=vehicles[vehicle.value];
  const premium=vehiclePremium(),interest=interestOn(Math.max(0,premium)),total=Math.max(0,premium)+interest;
- const snapshot={vehicle:vehicle.value,daily:d,petrolPrice:pp,cngPrice:cp,petrolMileage:pm,cngMileage:cm,petrolPerKm:pkm,cngPerKm:ckm,savingPerKm:Math.max(0,diff),premium,interest,total,score};
- let score=50;
- // Economics: annual running and fuel saving are the main driver.
- if(diff>0) score+=Math.min(30, diff*8); else score+=Math.max(-30,diff*8);
- if(d>=40)score+=7;else if(d<20)score-=8;else if(d<30)score-=3;
- if(val('usage')==='taxi')score+=8;
- if(val('driving')==='economy')score+=5; if(val('driving')==='performance')score-=8;
- if(val('queue')==='comfortable')score+=5; if(val('queue')==='not')score-=10;
- if(val('outside')==='ok')score+=4; if(val('outside')==='not')score-=9;
- if(val('station')==='under5')score+=6; if(val('station')==='over7')score-=8;
- score=Math.round(Math.max(0,Math.min(100,score)));
+ const breakEven=diff>0?total/diff:Infinity;
+ const years=d>0&&isFinite(breakEven)?breakEven/(d*365):Infinity;
+
+ // Economics-first suitability:
+ // Recovery period is the primary decision factor. Low-running customers must
+ // not be pushed towards CNG simply because CNG fuel is cheaper per kilometre.
+ // Preferences can fine-tune the result, but cannot override a poor recovery period.
+ let score;
+ if(!isFinite(years) || years>=7) score=25;
+ else if(years>=5) score=40;
+ else if(years>3) score=70;
+ else score=88;
+
+ let preferenceAdj=0;
+ if(val('usage')==='taxi')preferenceAdj+=4;
+ if(val('driving')==='economy')preferenceAdj+=3;
+ if(val('driving')==='performance')preferenceAdj-=5;
+ if(val('queue')==='comfortable')preferenceAdj+=3;
+ if(val('queue')==='not')preferenceAdj-=4;
+ if(val('outside')==='ok')preferenceAdj+=2;
+ if(val('outside')==='not')preferenceAdj-=4;
+ if(val('station')==='under5')preferenceAdj+=2;
+ if(val('station')==='over7')preferenceAdj-=3;
+ score=Math.round(Math.max(0,Math.min(100,score+preferenceAdj)));
+
  let verdict=score>=62?'CNG is right for you':score<=42?'Petrol is right':'Both can work';
- const breakEven=diff>0?total/diff:Infinity;const years=d>0&&isFinite(breakEven)?breakEven/(d*365):Infinity;
+ const snapshot={vehicle:vehicle.value,daily:d,petrolPrice:pp,cngPrice:cp,petrolMileage:pm,cngMileage:cm,petrolPerKm:pkm,cngPerKm:ckm,savingPerKm:Math.max(0,diff),premium,interest,total,score,breakEven,years};
  $('score').textContent=score;$('verdict').textContent=verdict;$('resultVehicle').textContent=vehicle.value+' CNG';$('resultDaily').textContent=d.toLocaleString('en-IN')+' KM/day';$('resultFuelPrices').textContent='₹'+pp.toFixed(2)+' / ₹'+cp.toFixed(2);$('resultSaving').textContent=diff>0?'₹'+diff.toFixed(2)+'/km':'₹0.00/km';$('verdict').className='verdict '+(score>=62?'cng':score<=42?'':'tie');
  // Rotate needle from 0° at left-ish to 180° at right-ish.
  const angle=-62+(score/100)*124;const rad=angle*Math.PI/180;const x2=180+101*Math.sin(rad),y2=145-101*Math.cos(rad);$('needle').setAttribute('x2',x2);$('needle').setAttribute('y2',y2);
