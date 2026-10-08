@@ -7,7 +7,7 @@
 <meta name="description" content="Rukmani Motors Arena fuel suitability calculator — compare Petrol vs S-CNG based on running, prices and customer preferences." />
 <style>
 :root{--bg:#071018;--panel:#0d1722;--panel2:#111d2b;--line:#273444;--text:#f5f7fb;--muted:#9ba8b7;--green:#00d084;--green2:#0a8f61;--red:#ff5964;--amber:#ffca4b;--cyan:#58d8ff;--shadow:0 22px 55px rgba(0,0,0,.38)}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#102234 0,#071018 38%,#03070b 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:760px;margin:auto;padding:20px 16px 50px}.brand{display:flex;justify-content:center;align-items:center;margin:2px 0 12px}.brand img{width:min(340px,86vw);height:auto;display:block;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,0,0,.28))}.hero{text-align:left}.hero h1{font-size:42px;line-height:1.02;margin:0;color:#64d8ff;letter-spacing:-1.5px}.hero .hi{font-size:28px;font-weight:800;margin:18px 0 24px}.rule{height:1px;background:#253240;margin:0 0 24px}.card{background:linear-gradient(180deg,rgba(14,25,38,.96),rgba(7,15,24,.98));border:1px solid #2b3a4b;border-radius:22px;padding:20px;box-shadow:var(--shadow);margin-bottom:18px}.label{font-size:12px;color:#dce3eb;font-weight:700;margin:0 0 8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{margin-bottom:14px}.field.full{grid-column:1/-1}.input,.select{width:100%;border:1px solid #2b394b;background:#111c2b;color:#fff;border-radius:12px;padding:14px 13px;font-size:16px;outline:none}.input:focus,.select:focus{border-color:var(--green)}select{appearance:auto}.mini{font-size:10px;color:var(--muted);margin-top:4px}.pricebox{border:1px solid #2b394b;border-radius:16px;padding:15px;margin:2px 0 18px}.pricebox .title{text-align:center;font-size:11px;font-weight:900;letter-spacing:.16em;color:#fff;border-bottom:1px dashed #344355;padding-bottom:10px;margin-bottom:12px}.pricecols{display:grid;grid-template-columns:1fr 1fr}.pricecols div:last-child{text-align:right}.pricecols small{display:block;color:#8493a5;font-size:10px;font-weight:800;letter-spacing:.12em}.pricecols strong{display:block;font-size:21px;margin-top:4px;color:var(--green)}.segtitle{font-size:12px;font-weight:700;color:#dce3eb;margin:14px 0 8px}.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.seg button{background:#0d1724;color:#8593a5;border:1px solid #263547;border-radius:10px;padding:10px 6px;font-size:11px;font-weight:800;min-height:42px}.seg button.active{color:var(--green);border-color:#087a55;background:#08231d;box-shadow:0 0 0 1px rgba(0,208,132,.1) inset}.cta{width:100%;border:0;border-radius:13px;padding:16px;background:#008b4f;color:white;font-size:16px;font-weight:900;letter-spacing:.01em;cursor:pointer;box-shadow:0 10px 25px rgba(0,139,79,.2)}.cta:hover{background:#00a45d}.cta:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}.cta:disabled:hover{background:#008b4f}.note{font-size:11px;color:#7f8e9f;line-height:1.55;margin-top:12px}.result{display:none}.result.show{display:block}.gauge{border:1px solid #334355;border-radius:20px;padding:22px 15px 20px;text-align:center;background:radial-gradient(circle at 50% 100%,#182432 0,#081019 62%)}.gauge svg{width:min(430px,100%);height:auto}.score{font-size:47px;font-weight:950;letter-spacing:-2px}.verdict{display:inline-block;margin-top:10px;border:1px solid #43212a;background:#210b11;color:#ff6b73;border-radius:12px;padding:11px 28px;font-size:19px;font-weight:900}.verdict.cng{border-color:#095d45;background:#06251c;color:#00d084}.verdict.tie{border-color:#66501c;background:#241d08;color:#ffd45c}.metric{margin-top:18px}.metric h3{font-size:15px;margin:0 0 16px;border-bottom:1px solid #2b394b;padding-bottom:12px}.rows{display:grid;gap:10px}.row{display:flex;justify-content:space-between;gap:20px;font-size:13px;color:#98a5b5}.row b{color:#f7f9fc;font-size:14px}.big{font-size:31px;font-weight:950;color:var(--red);background:#05090e;border-radius:14px;padding:15px;text-align:center;margin-top:16px}.recovery{border:1px solid #2b394b;border-radius:16px;padding:18px;text-align:center;margin-top:16px}.recovery small{color:#8997a8;font-weight:800;letter-spacing:.12em}.recovery strong{display:block;color:#ff6d76;font-size:38px;margin-top:6px}.why{margin-top:16px;padding:15px;border-radius:14px;background:#0b1622;border:1px solid #233244;font-size:12px;line-height:1.6;color:#b4c0cd}.foot{color:#657487;font-size:10px;text-align:center;margin-top:22px;line-height:1.5}.secondary{width:100%;border:1px solid #2d3c4e;background:#0a121b;color:#a9b6c5;border-radius:12px;padding:13px;font-weight:800;margin-top:12px;cursor:pointer}.admin{margin-top:18px}.admin summary{cursor:pointer;color:#7f90a3;font-size:11px}.adminbox{margin-top:10px;padding:14px;border:1px dashed #304154;border-radius:14px}.adminbox p{font-size:11px;color:#8795a5}.success{color:var(--green)}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#102234 0,#071018 38%,#03070b 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:760px;margin:auto;padding:20px 16px 50px}.brand{display:flex;justify-content:center;align-items:center;margin:2px 0 12px}.brand img{width:min(340px,86vw);height:auto;display:block;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,0,0,.28))}.hero{text-align:left}.hero h1{font-size:42px;line-height:1.02;margin:0;color:#64d8ff;letter-spacing:-1.5px}.hero .hi{font-size:28px;font-weight:800;margin:18px 0 24px}.rule{height:1px;background:#253240;margin:0 0 24px}.card{background:linear-gradient(180deg,rgba(14,25,38,.96),rgba(7,15,24,.98));border:1px solid #2b3a4b;border-radius:22px;padding:20px;box-shadow:var(--shadow);margin-bottom:18px}.label{font-size:12px;color:#dce3eb;font-weight:700;margin:0 0 8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{margin-bottom:14px}.field.full{grid-column:1/-1}.input,.select{width:100%;border:1px solid #2b394b;background:#111c2b;color:#fff;border-radius:12px;padding:14px 13px;font-size:16px;outline:none}.input:focus,.select:focus{border-color:var(--green)}select{appearance:auto}.mini{font-size:10px;color:var(--muted);margin-top:4px}.pricebox{border:1px solid #2b394b;border-radius:16px;padding:15px;margin:2px 0 18px}.vehiclepricebox{border:1px solid #2b394b;border-radius:16px;padding:15px;margin:2px 0 18px}.vehiclepricebox .title{text-align:center;font-size:11px;font-weight:900;letter-spacing:.16em;color:#fff;border-bottom:1px dashed #344355;padding-bottom:10px;margin-bottom:12px}.pricehint{font-size:10px;color:#8493a5;line-height:1.5;margin-top:8px}.sliderrow{margin-top:14px}.sliderrow label{display:flex;justify-content:space-between;gap:12px;color:#dce3eb;font-size:11px;font-weight:800;margin-bottom:8px}.range{width:100%;accent-color:var(--green);cursor:pointer}.pricebox .title{text-align:center;font-size:11px;font-weight:900;letter-spacing:.16em;color:#fff;border-bottom:1px dashed #344355;padding-bottom:10px;margin-bottom:12px}.pricecols{display:grid;grid-template-columns:1fr 1fr}.pricecols div:last-child{text-align:right}.pricecols small{display:block;color:#8493a5;font-size:10px;font-weight:800;letter-spacing:.12em}.pricecols strong{display:block;font-size:21px;margin-top:4px;color:var(--green)}.segtitle{font-size:12px;font-weight:700;color:#dce3eb;margin:14px 0 8px}.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.seg button{background:#0d1724;color:#8593a5;border:1px solid #263547;border-radius:10px;padding:10px 6px;font-size:11px;font-weight:800;min-height:42px}.seg button.active{color:var(--green);border-color:#087a55;background:#08231d;box-shadow:0 0 0 1px rgba(0,208,132,.1) inset}.cta{width:100%;border:0;border-radius:13px;padding:16px;background:#008b4f;color:white;font-size:16px;font-weight:900;letter-spacing:.01em;cursor:pointer;box-shadow:0 10px 25px rgba(0,139,79,.2)}.cta:hover{background:#00a45d}.cta:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}.cta:disabled:hover{background:#008b4f}.note{font-size:11px;color:#7f8e9f;line-height:1.55;margin-top:12px}.result{display:none}.result.show{display:block}.gauge{border:1px solid #334355;border-radius:20px;padding:22px 15px 20px;text-align:center;background:radial-gradient(circle at 50% 100%,#182432 0,#081019 62%)}.gauge svg{width:min(430px,100%);height:auto}.score{font-size:47px;font-weight:950;letter-spacing:-2px}.verdict{display:inline-block;margin-top:10px;border:1px solid #43212a;background:#210b11;color:#ff6b73;border-radius:12px;padding:11px 28px;font-size:19px;font-weight:900}.verdict.cng{border-color:#095d45;background:#06251c;color:#00d084}.verdict.tie{border-color:#66501c;background:#241d08;color:#ffd45c}.metric{margin-top:18px}.metric h3{font-size:15px;margin:0 0 16px;border-bottom:1px solid #2b394b;padding-bottom:12px}.rows{display:grid;gap:10px}.row{display:flex;justify-content:space-between;gap:20px;font-size:13px;color:#98a5b5}.row b{color:#f7f9fc;font-size:14px}.big{font-size:31px;font-weight:950;color:var(--red);background:#05090e;border-radius:14px;padding:15px;text-align:center;margin-top:16px}.recovery{border:1px solid #2b394b;border-radius:16px;padding:18px;text-align:center;margin-top:16px}.recovery small{color:#8997a8;font-weight:800;letter-spacing:.12em}.recovery strong{display:block;color:#ff6d76;font-size:38px;margin-top:6px}.why{margin-top:16px;padding:15px;border-radius:14px;background:#0b1622;border:1px solid #233244;font-size:12px;line-height:1.6;color:#b4c0cd}.foot{color:#657487;font-size:10px;text-align:center;margin-top:22px;line-height:1.5}.secondary{width:100%;border:1px solid #2d3c4e;background:#0a121b;color:#a9b6c5;border-radius:12px;padding:13px;font-weight:800;margin-top:12px;cursor:pointer}.admin{margin-top:18px}.admin summary{cursor:pointer;color:#7f90a3;font-size:11px}.adminbox{margin-top:10px;padding:14px;border:1px dashed #304154;border-radius:14px}.adminbox p{font-size:11px;color:#8795a5}.success{color:var(--green)}
 @media(max-width:520px){.wrap{padding:16px 12px 40px}.hero h1{font-size:34px}.hero .hi{font-size:24px}.card{padding:16px}.grid{gap:9px}.seg button{font-size:10px;padding:9px 4px}.big{font-size:27px}}
 </style>
 </head>
@@ -26,7 +26,7 @@
       <div class="field"><div class="label">CNG Mileage (km/kg)</div><input id="cngMileage" class="input" type="number" min="0" step="0.01"></div>
     </div>
 
-    <div class="pricebox"><div class="title">PRICE PER KM</div><div class="pricecols"><div><small>PETROL</small><strong id="petrolPerKm">₹0.00</strong></div><div><small>CNG</small><strong id="cngPerKm">₹0.00</strong></div></div></div>
+    <div class="vehiclepricebox"><div class="title">VEHICLE PRICE COMPARISON</div><div class="grid"><div class="field"><div class="label">Petrol Variant Price (₹)</div><input id="petrolVehiclePrice" class="input" type="number" min="0" step="100" placeholder="Enter petrol variant price"></div><div class="field"><div class="label">CNG Variant Price (₹)</div><input id="cngVehiclePrice" class="input" type="number" min="0" step="100" placeholder="Enter CNG variant price"></div></div><div class="sliderrow"><label><span>Additional CNG Cost Adjustment</span><b id="premiumAdjustmentValue">₹0</b></label><input id="premiumAdjustment" class="range" type="range" min="0" max="100000" step="1000" value="0"><div class="pricehint">Use this only when you need to add a quotation/dealer-specific adjustment to the CNG price difference.</div></div><div class="pricecols" style="margin-top:14px"><div><small>BASE DIFFERENCE</small><strong id="basePremium">₹0</strong></div><div><small>FINAL CNG PREMIUM</small><strong id="finalPremium">₹0</strong></div></div><div class="pricehint">Final CNG premium = CNG variant price − Petrol variant price + adjustment.</div></div><div class="pricebox"><div class="title">PRICE PER KM</div><div class="pricecols"><div><small>PETROL</small><strong id="petrolPerKm">₹0.00</strong></div><div><small>CNG</small><strong id="cngPerKm">₹0.00</strong></div></div></div>
 
     <div class="segtitle">Vehicle Usage</div><div class="seg" id="usage"><button data-value="personal">Personal</button><button data-value="taxi">Taxi</button><button style="visibility:hidden"></button></div>
     <div class="segtitle">Driving preference</div><div class="seg" id="driving"><button data-value="economy">Economy</button><button data-value="balanced">Balanced</button><button data-value="performance">Performance</button></div>
@@ -34,7 +34,7 @@
     <div class="segtitle">Do You/Your family feel comfortable coming out of the car during refuelling? (Incl. Night)</div><div class="seg" id="outside"><button data-value="ok">Ok with the hustle</button><button data-value="manageable">Manageable</button><button data-value="not">Not preferred</button></div>
     <div class="segtitle">How convenient is access to CNG station?</div><div class="seg" id="station"><button data-value="under5">Less than 5 KMs</button><button data-value="5to7">5–7 KMs</button><button data-value="over7">More than 7 KMs</button></div>
     <button class="cta" id="check" disabled>Check My Fuel Suitability</button>
-    <div class="note">Fuel prices, mileage and vehicle price difference are editable. Use the current Rukmani Motors quotation/price list before presenting the recommendation to a customer.</div>
+    <div class="note">Fuel prices, mileage and vehicle prices are editable. Enter comparable petrol and CNG variant prices (preferably the same trim/transmission) to calculate the actual additional CNG investment. Use the current Rukmani Motors quotation/price list before presenting the recommendation to a customer.</div>
   </section>
 
   <section id="result" class="result">
@@ -50,15 +50,16 @@
 </div>
 <script>
 const vehicles={
- 'Alto K10':{petrol:24.39,cng:33.85,premium:95000},
- 'S-Presso':{petrol:24.12,cng:32.73,premium:90000},
- 'Celerio':{petrol:25.24,cng:34.43,premium:90000},
- 'WagonR 1.0':{petrol:24.35,cng:34.05,premium:95000},
- 'Swift':{petrol:24.80,cng:30.90,premium:105000},
- 'Dzire':{petrol:24.79,cng:31.12,premium:105000},
- 'Eeco':{petrol:19.71,cng:26.78,premium:95000},
- 'Ertiga':{petrol:20.30,cng:26.11,premium:115000},
- 'Brezza':{petrol:17.80,cng:25.51,premium:115000}
+ 'Alto K10':{petrol:24.39,cng:33.85},
+ 'S-Presso':{petrol:24.12,cng:32.73},
+ 'Celerio':{petrol:25.24,cng:34.43},
+ 'WagonR 1.0':{petrol:24.35,cng:34.05},
+ 'Swift':{petrol:24.80,cng:30.90},
+ 'Dzire':{petrol:24.79,cng:31.12},
+ 'Eeco':{petrol:19.71,cng:26.78},
+ 'Ertiga':{petrol:20.30,cng:26.11},
+ 'Brezza':{petrol:17.80,cng:25.51},
+ 'Victoris':{petrol:21.18,cng:27.02}
 };
 const $=id=>document.getElementById(id);const vehicle=$('vehicle');
 Object.keys(vehicles).forEach(v=>{let o=document.createElement('option');o.value=v;o.textContent=v+' CNG';vehicle.appendChild(o)});
@@ -74,26 +75,26 @@ vehicle.addEventListener('change',setDefaults);
 function calcPerKm(){
  let pp=+$('petrolPrice').value||0,cp=+$('cngPrice').value||0,pm=+$('petrolMileage').value||0,cm=+$('cngMileage').value||0;
  $('petrolPerKm').textContent='₹'+(pm?pp/pm:0).toFixed(2);
- $('cngPerKm').textContent='₹'+(cm?cp/cm:0).toFixed(2);
+ $('cngPerKm').textContent='₹'+(cm?cp/cm:0).toFixed(2);updatePremiumDisplay();
 }
 function updateFormState(){
- const inputs=['daily','petrolPrice','cngPrice','petrolMileage','cngMileage'];
+ const inputs=['daily','petrolPrice','cngPrice','petrolMileage','cngMileage','petrolVehiclePrice','cngVehiclePrice'];
  const inputsComplete=inputs.every(id=>$(id).value.trim()!=='' && Number($(id).value)>0);
  const choices=['usage','driving','queue','outside','station'].every(id=>val(id));
  $('check').disabled=!(vehicle.value && inputsComplete && choices);
 }
-['daily','petrolPrice','cngPrice','petrolMileage','cngMileage'].forEach(id=>{
+['daily','petrolPrice','cngPrice','petrolMileage','cngMileage','petrolVehiclePrice','cngVehiclePrice'].forEach(id=>{
  $(id).addEventListener('input',()=>{calcPerKm();updateFormState()});
 });
 function bindSeg(id){document.querySelectorAll('#'+id+' button[data-value]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('active'));b.classList.add('active');updateFormState()}))}
 ['usage','driving','queue','outside','station'].forEach(bindSeg);
 function val(id){return document.querySelector('#'+id+' .active')?.dataset.value}
-function interestOn(principal,rate=.085,years=5){if(!principal)return 0;const r=rate/12,n=years*12;const emi=principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);return Math.max(0,emi*n-principal)}
+function vehiclePremium(){const petrol=+$('petrolVehiclePrice').value||0,cng=+$('cngVehiclePrice').value||0,adjustment=+$('premiumAdjustment').value||0;return Math.max(0,cng-petrol+adjustment);}\nfunction updatePremiumDisplay(){const base=(+$('cngVehiclePrice').value||0)-($('petrolVehiclePrice').value||0);const adjustment=+$('premiumAdjustment').value||0;const final=Math.max(0,base+adjustment);$('basePremium').textContent='₹'+Math.round(base).toLocaleString('en-IN');$('finalPremium').textContent='₹'+Math.round(final).toLocaleString('en-IN');$('premiumAdjustmentValue').textContent='₹'+Math.round(adjustment).toLocaleString('en-IN');}\nfunction interestOn(principal,rate=.085,years=5){if(!principal)return 0;const r=rate/12,n=years*12;const emi=principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);return Math.max(0,emi*n-principal)}
 function calculate(){
  if($('check').disabled)return;
  const d=+$('daily').value||0,pp=+$('petrolPrice').value||0,cp=+$('cngPrice').value||0,pm=+$('petrolMileage').value||0,cm=+$('cngMileage').value||0;
  const pkm=pm?pp/pm:0,ckm=cm?cp/cm:0,diff=pkm-ckm,v=vehicles[vehicle.value];
- const premium=v.premium,interest=interestOn(premium),total=premium+interest;
+ const premium=vehiclePremium(),interest=interestOn(Math.max(0,premium)),total=Math.max(0,premium)+interest;
  let score=50;
  // Economics: annual running and fuel saving are the main driver.
  if(diff>0) score+=Math.min(30, diff*8); else score+=Math.max(-30,diff*8);
@@ -120,18 +121,26 @@ function resetForm(){
  $('cngPrice').value='';
  $('petrolMileage').value='';
  $('cngMileage').value='';
+ $('petrolVehiclePrice').value='';
+ $('cngVehiclePrice').value='';
+ $('premiumAdjustment').value='0';
  vehicle.value='';
  ['usage','driving','queue','outside','station'].forEach(id=>{
    document.querySelectorAll('#'+id+' button[data-value]').forEach(b=>b.classList.remove('active'));
  });
  $('petrolPerKm').textContent='₹0.00';
  $('cngPerKm').textContent='₹0.00';
+ $('basePremium').textContent='₹0';
+ $('finalPremium').textContent='₹0';
+ $('premiumAdjustmentValue').textContent='₹0';
  $('result').classList.remove('show');
  updateFormState();
  window.scrollTo({top:0,behavior:'smooth'});
 }
 $('check').addEventListener('click',calculate);
 $('recalc').addEventListener('click',resetForm);
+$('premiumAdjustment').addEventListener('input',()=>{updatePremiumDisplay();updateFormState()});
+updatePremiumDisplay();
 updateFormState();
 </script>
 </body></html>
