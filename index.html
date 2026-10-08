@@ -103,12 +103,14 @@ function calculate(){
 
  // Balanced suitability model:
  // Financial economics = 60%, usage/driving = 20%, convenience = 20%.
- // Recovery period remains the strongest guardrail so subjective preferences
- // cannot turn a financially poor CNG case into a CNG recommendation.
+ // Recovery period is the primary financial gate:
+ // <3 years = strong CNG case; 3-5 years = borderline; 5+ years = Petrol-leaning.
+ // Customer preferences can influence a borderline case, but cannot override
+ // a long recovery period.
  let financialScore;
  if(!isFinite(years) || years>=7) financialScore=20;
  else if(years>=5) financialScore=40;
- else if(years>3) financialScore=70;
+ else if(years>=3) financialScore=60;
  else financialScore=90;
 
  let usageScore=10;
@@ -127,9 +129,12 @@ function calculate(){
  convenienceScore=Math.max(0,Math.min(20,convenienceScore));
 
  let score=Math.round(financialScore*0.6 + usageScore + convenienceScore);
- // Hard financial guardrails.
+ // Strong financial guardrails:
+ // 7+ years = Petrol; 5-7 years = Petrol/at most Both;
+ // 3-5 years = Both at most, even when customer preferences favour CNG.
  if(!isFinite(years) || years>=7) score=Math.min(score,42);
- else if(years>=5) score=Math.min(score,59);
+ else if(years>=5) score=Math.min(score,49);
+ else if(years>=3) score=Math.min(score,59);
 
  let verdict=score>=62?'CNG is right for you':score<=42?'Petrol is right':'Both can work';
  const snapshot={vehicle:vehicle.value,daily:d,petrolPrice:pp,cngPrice:cp,petrolMileage:pm,cngMileage:cm,petrolPerKm:pkm,cngPerKm:ckm,savingPerKm:Math.max(0,diff),premium,interest,total,score,breakEven,years};
