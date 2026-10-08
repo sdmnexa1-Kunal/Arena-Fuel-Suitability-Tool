@@ -45,7 +45,7 @@
     </div></div>
 
     <div class="card metric"><h3>Total additional investment for CNG Car</h3><div class="rows"><div class="row"><span>Additional cost of CNG vehicle</span><b id="premium">₹0</b></div><div class="row"><span>Estimated total interest (@8.5% for 5 Years)</span><b id="interest">₹0</b></div></div><div class="big" id="totalInvestment">₹0</div></div>
-    <div class="card metric"><h3>NO SAVINGS UPTO:</h3><div class="big" id="breakEvenKm">0 KM</div><div class="recovery"><small>RECOVERY PERIOD</small><strong id="recovery">0.0 <small style="font-size:18px;letter-spacing:0">Yrs</small></strong></div><div class="why" id="why"></div><button class="secondary" id="recalc">Recalculate Details</button></div>
+    <div class="card metric"><h3>CNG PREMIUM BREAK-EVEN DISTANCE</h3><div class="big" id="breakEvenKm">0 KM</div><div class="recovery"><small>RECOVERY PERIOD</small><strong id="recovery">0.0 <small style="font-size:18px;letter-spacing:0">Yrs</small></strong></div><div class="why" id="why"></div><button class="secondary" id="recalc">Recalculate Details</button></div>
   </section>
   <div class="foot">Rukmani Motors Arena • Customer counselling tool • Not a financial or fuel-price guarantee. Actual on-road cost, discounts, finance rate and mileage may vary.</div>
 </div>
@@ -101,17 +101,14 @@ function calculate(){
  const breakEven=diff>0?total/diff:Infinity;
  const years=d>0&&isFinite(breakEven)?breakEven/(d*365):Infinity;
 
- // Balanced suitability model:
- // Financial economics = 60%, usage/driving = 20%, convenience = 20%.
- // Recovery period is the primary financial gate:
- // <3 years = strong CNG case; 3-5 years = borderline; 5+ years = Petrol-leaning.
- // Customer preferences can influence a borderline case, but cannot override
- // a long recovery period.
+ // Balanced suitability model: exact 60% financial, 20% usage/driving, 20% convenience.
+ // Recovery period is the primary financial gate. Preferences can refine a case,
+ // but cannot turn a long-payback CNG purchase into a CNG recommendation.
  let financialScore;
  if(!isFinite(years) || years>=7) financialScore=20;
  else if(years>=5) financialScore=40;
- else if(years>=3) financialScore=60;
- else financialScore=90;
+ else if(years>=3) financialScore=70;
+ else financialScore=100;
 
  let usageScore=10;
  if(val('usage')==='taxi') usageScore+=6;
@@ -129,11 +126,10 @@ function calculate(){
  convenienceScore=Math.max(0,Math.min(20,convenienceScore));
 
  let score=Math.round(financialScore*0.6 + usageScore + convenienceScore);
- // Strong financial guardrails:
- // 7+ years = Petrol; 5-7 years = Petrol/at most Both;
- // 3-5 years = Both at most, even when customer preferences favour CNG.
+ // Financial guardrails: 7+ years = Petrol; 5-7 years = Both/Petrol;
+ // 3-5 years = Both at most. Only <3 years can become a clear CNG case.
  if(!isFinite(years) || years>=7) score=Math.min(score,42);
- else if(years>=5) score=Math.min(score,49);
+ else if(years>=5) score=Math.min(score,59);
  else if(years>=3) score=Math.min(score,59);
 
  let verdict=score>=62?'CNG is right for you':score<=42?'Petrol is right':'Both can work';
@@ -143,7 +139,7 @@ function calculate(){
  const angle=-62+(score/100)*124;const rad=angle*Math.PI/180;const x2=180+101*Math.sin(rad),y2=145-101*Math.cos(rad);$('needle').setAttribute('x2',x2);$('needle').setAttribute('y2',y2);
  $('premium').textContent='₹'+Math.round(snapshot.premium).toLocaleString('en-IN');$('interest').textContent='₹'+Math.round(snapshot.interest).toLocaleString('en-IN');$('totalInvestment').textContent='₹'+Math.round(snapshot.total).toLocaleString('en-IN');
  $('breakEvenKm').textContent=isFinite(breakEven)?Math.round(breakEven).toLocaleString('en-IN')+' KILOMETRES':'No savings';$('topRecovery').textContent=isFinite(years)?years.toFixed(1)+' Years':'—';$('recovery').innerHTML=isFinite(years)?years.toFixed(1)+' <small style="font-size:18px;letter-spacing:0">Yrs</small>':'—';
- $('why').innerHTML=`<b>Why this result?</b><br>Fuel cost per km: Petrol <b>₹${pkm.toFixed(2)}</b> vs CNG <b>₹${ckm.toFixed(2)}</b>. ${diff>0?`CNG saves about <b>₹${diff.toFixed(2)}/km</b> before considering the extra vehicle/finance cost.`:`At these inputs, CNG does not reduce fuel cost per km.`} The recommendation also considers running, usage, driving preference, refuelling comfort and station access.`;
+ $('why').innerHTML=`<b>Why this result?</b><br>Fuel cost per km: Petrol <b>₹${pkm.toFixed(2)}</b> vs CNG <b>₹${ckm.toFixed(2)}</b>. ${diff>0?`CNG saves about <b>₹${diff.toFixed(2)}/km</b> on fuel. The CNG premium and estimated finance interest are recovered after <b>${isFinite(breakEven)?Math.round(breakEven).toLocaleString('en-IN'):'an undefined distance'} km</b> at the selected running. The recommendation also considers vehicle usage, driving preference, CNG waiting-time tolerance, refuelling comfort and station access.`:`At these inputs, CNG does not reduce fuel cost per km.`} The recommendation also considers vehicle usage, driving preference, CNG waiting-time tolerance, refuelling comfort and station access.`;
  $('inputPage').classList.add('hidden');$('result').classList.add('show');$('result').setAttribute('aria-hidden','false');window.scrollTo({top:0,behavior:'smooth'});
 }
 function resetForm(){
