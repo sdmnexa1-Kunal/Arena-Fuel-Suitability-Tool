@@ -50,15 +50,16 @@
 </div>
 <script>
 const vehicles={
- 'Alto K10':{petrol:24.39,cng:33.85,premium:95000},
- 'S-Presso':{petrol:24.12,cng:32.73,premium:90000},
- 'Celerio':{petrol:25.24,cng:34.43,premium:90000},
- 'WagonR 1.0':{petrol:24.35,cng:34.05,premium:95000},
- 'Swift':{petrol:24.80,cng:30.90,premium:105000},
- 'Dzire':{petrol:24.79,cng:31.12,premium:105000},
- 'Eeco':{petrol:19.71,cng:26.78,premium:95000},
- 'Ertiga':{petrol:20.30,cng:26.11,premium:115000},
- 'Brezza':{petrol:17.80,cng:25.51,premium:115000}
+ 'Alto K10':{petrol:24.39,cng:33.85},
+ 'S-Presso':{petrol:24.12,cng:32.73},
+ 'Celerio':{petrol:25.24,cng:34.43},
+ 'WagonR 1.0':{petrol:24.35,cng:34.05},
+ 'Swift':{petrol:24.80,cng:30.90},
+ 'Dzire':{petrol:24.79,cng:31.12},
+ 'Eeco':{petrol:19.71,cng:26.78},
+ 'Ertiga':{petrol:20.30,cng:26.11},
+ 'Brezza':{petrol:17.80,cng:25.51},
+ 'Victoris':{petrol:21.18,cng:27.02}
 };
 const $=id=>document.getElementById(id);const vehicle=$('vehicle');
 Object.keys(vehicles).forEach(v=>{let o=document.createElement('option');o.value=v;o.textContent=v+' CNG';vehicle.appendChild(o)});
@@ -88,7 +89,7 @@ function updateFormState(){
 function bindSeg(id){document.querySelectorAll('#'+id+' button[data-value]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+id+' button').forEach(x=>x.classList.remove('active'));b.classList.add('active');updateFormState()}))}
 ['usage','driving','queue','outside','station'].forEach(bindSeg);
 function val(id){return document.querySelector('#'+id+' .active')?.dataset.value}
-function vehiclePremium(){const petrol=+$('petrolVehiclePrice').value||0,cng=+$('cngVehiclePrice').value||0,adjustment=+$('premiumAdjustment').value||0;return cng-petrol+adjustment;}\nfunction updatePremiumDisplay(){const base=(+$('cngVehiclePrice').value||0)-($('petrolVehiclePrice').value||0);const adjustment=+$('premiumAdjustment').value||0;const final=base+adjustment;$('basePremium').textContent='₹'+Math.round(base).toLocaleString('en-IN');$('finalPremium').textContent='₹'+Math.round(final).toLocaleString('en-IN');$('premiumAdjustmentValue').textContent='₹'+Math.round(adjustment).toLocaleString('en-IN');}\nfunction interestOn(principal,rate=.085,years=5){if(!principal)return 0;const r=rate/12,n=years*12;const emi=principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);return Math.max(0,emi*n-principal)}
+function vehiclePremium(){const petrol=+$('petrolVehiclePrice').value||0,cng=+$('cngVehiclePrice').value||0,adjustment=+$('premiumAdjustment').value||0;return Math.max(0,cng-petrol+adjustment);}\nfunction updatePremiumDisplay(){const base=(+$('cngVehiclePrice').value||0)-($('petrolVehiclePrice').value||0);const adjustment=+$('premiumAdjustment').value||0;const final=Math.max(0,base+adjustment);$('basePremium').textContent='₹'+Math.round(base).toLocaleString('en-IN');$('finalPremium').textContent='₹'+Math.round(final).toLocaleString('en-IN');$('premiumAdjustmentValue').textContent='₹'+Math.round(adjustment).toLocaleString('en-IN');}\nfunction interestOn(principal,rate=.085,years=5){if(!principal)return 0;const r=rate/12,n=years*12;const emi=principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);return Math.max(0,emi*n-principal)}
 function calculate(){
  if($('check').disabled)return;
  const d=+$('daily').value||0,pp=+$('petrolPrice').value||0,cp=+$('cngPrice').value||0,pm=+$('petrolMileage').value||0,cm=+$('cngMileage').value||0;
