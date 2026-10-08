@@ -101,27 +101,35 @@ function calculate(){
  const breakEven=diff>0?total/diff:Infinity;
  const years=d>0&&isFinite(breakEven)?breakEven/(d*365):Infinity;
 
- // Economics-first suitability:
- // Recovery period is the primary decision factor. Low-running customers must
- // not be pushed towards CNG simply because CNG fuel is cheaper per kilometre.
- // Preferences can fine-tune the result, but cannot override a poor recovery period.
- let score;
- if(!isFinite(years) || years>=7) score=25;
- else if(years>=5) score=40;
- else if(years>3) score=70;
- else score=88;
+ // Balanced suitability model:
+ // Financial economics = 60%, usage/driving = 20%, convenience = 20%.
+ // Recovery period remains the strongest guardrail so subjective preferences
+ // cannot turn a financially poor CNG case into a CNG recommendation.
+ let financialScore;
+ if(!isFinite(years) || years>=7) financialScore=20;
+ else if(years>=5) financialScore=40;
+ else if(years>3) financialScore=70;
+ else financialScore=90;
 
- let preferenceAdj=0;
- if(val('usage')==='taxi')preferenceAdj+=4;
- if(val('driving')==='economy')preferenceAdj+=3;
- if(val('driving')==='performance')preferenceAdj-=5;
- if(val('queue')==='comfortable')preferenceAdj+=3;
- if(val('queue')==='not')preferenceAdj-=4;
- if(val('outside')==='ok')preferenceAdj+=2;
- if(val('outside')==='not')preferenceAdj-=4;
- if(val('station')==='under5')preferenceAdj+=2;
- if(val('station')==='over7')preferenceAdj-=3;
- score=Math.round(Math.max(0,Math.min(100,score+preferenceAdj)));
+ let usageScore=10;
+ if(val('usage')==='taxi') usageScore+=6;
+ if(val('driving')==='economy') usageScore+=4;
+ if(val('driving')==='performance') usageScore-=4;
+ usageScore=Math.max(0,Math.min(20,usageScore));
+
+ let convenienceScore=10;
+ if(val('queue')==='comfortable') convenienceScore+=3;
+ if(val('queue')==='not') convenienceScore-=4;
+ if(val('outside')==='ok') convenienceScore+=2;
+ if(val('outside')==='not') convenienceScore-=3;
+ if(val('station')==='under5') convenienceScore+=2;
+ if(val('station')==='over7') convenienceScore-=3;
+ convenienceScore=Math.max(0,Math.min(20,convenienceScore));
+
+ let score=Math.round(financialScore*0.6 + usageScore + convenienceScore);
+ // Hard financial guardrails.
+ if(!isFinite(years) || years>=7) score=Math.min(score,42);
+ else if(years>=5) score=Math.min(score,59);
 
  let verdict=score>=62?'CNG is right for you':score<=42?'Petrol is right':'Both can work';
  const snapshot={vehicle:vehicle.value,daily:d,petrolPrice:pp,cngPrice:cp,petrolMileage:pm,cngMileage:cm,petrolPerKm:pkm,cngPerKm:ckm,savingPerKm:Math.max(0,diff),premium,interest,total,score,breakEven,years};
